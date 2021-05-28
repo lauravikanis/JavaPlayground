@@ -11,22 +11,22 @@ import java.util.Collections;
 import java.util.stream.Stream;
 
 @Component
-class Initalizer implements CommandLineRunner {
+class Initializer implements CommandLineRunner {
     private final GroupRepository repository;
 
-    public Initalizer(GroupRepository repository) {
+    public Initializer(GroupRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public void run(String... strings) {
-        Stream.of("Denver JUG", "Utah JUG", "Seattle JUG",
-                "Richmond JUG").forEach(name -> repository.save(new Group(name))
+        Stream.of("Cologne Stuff", "Düsseldorf Stuff", "Berlin Stuff",
+                "Hamburg Stuff").forEach(name -> repository.save(new Group(name))
         );
-        Group djug = repository.findByName("Denver Jug");
+        Group djug = repository.findByName("Cologne Stuff");
         Event e = Event.builder()
-                .title("Full Stack Reactive").description("Reactive with Spring Boot and React")
-                .date(Instant.parse("2018-12-12T18:00:00.000Z"))
+                .title("Full Stack ").description("Reactive with Spring Boot and React")
+                .date(Instant.parse("2021-12-12T18:00:00.000Z"))
                 .build();
         djug.setEvents(Collections.singleton(e));
         repository.save(djug);
